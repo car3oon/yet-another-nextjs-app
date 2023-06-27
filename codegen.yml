@@ -1,0 +1,11 @@
+overwrite: true
+schema:
+  - https://lukasz-store.eu.saleor.cloud/graphql/
+documents: 'graphql/**/*.{ts,graphql}'
+generates:
+  generated/api.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      - 'typescript-apollo-client-helpers'

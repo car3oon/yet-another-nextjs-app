@@ -1,0 +1,13 @@
+query GetChannels {
+  channels {
+    id
+    isActive
+    currencyCode
+    name
+    slug
+    defaultCountry {
+      country
+      code
+    }
+  }
+}
