@@ -27754,6 +27754,16 @@ export type _Service = {
   sdl?: Maybe<Scalars['String']['output']>;
 };
 
+export type AddChannelMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+  currencyCode: Scalars['String']['input'];
+  defaultCountry: CountryCode;
+}>;
+
+
+export type AddChannelMutation = { __typename?: 'Mutation', channelCreate?: { __typename?: 'ChannelCreate', channel?: { __typename?: 'Channel', id: string, isActive: boolean, currencyCode: string, name: string, slug: string, defaultCountry: { __typename?: 'CountryDisplay', country: string, code: string } } | null, errors: Array<{ __typename?: 'ChannelError', field?: string | null, code: ChannelErrorCode, message?: string | null }> } | null };
+
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -27770,6 +27780,59 @@ export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetProductsQuery = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', totalCount?: number | null, edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, updatedAt: any, channel?: string | null, media?: Array<{ __typename?: 'ProductMedia', url: string, id: string }> | null } }> } | null };
 
 
+export const AddChannelDocument = gql`
+    mutation AddChannel($name: String!, $slug: String!, $currencyCode: String!, $defaultCountry: CountryCode!) {
+  channelCreate(
+    input: {name: $name, slug: $slug, currencyCode: $currencyCode, defaultCountry: $defaultCountry}
+  ) {
+    channel {
+      id
+      isActive
+      currencyCode
+      name
+      slug
+      defaultCountry {
+        country
+        code
+      }
+    }
+    errors {
+      field
+      code
+      message
+    }
+  }
+}
+    `;
+export type AddChannelMutationFn = Apollo.MutationFunction<AddChannelMutation, AddChannelMutationVariables>;
+
+/**
+ * __useAddChannelMutation__
+ *
+ * To run a mutation, you first call `useAddChannelMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddChannelMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addChannelMutation, { data, loading, error }] = useAddChannelMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      slug: // value for 'slug'
+ *      currencyCode: // value for 'currencyCode'
+ *      defaultCountry: // value for 'defaultCountry'
+ *   },
+ * });
+ */
+export function useAddChannelMutation(baseOptions?: Apollo.MutationHookOptions<AddChannelMutation, AddChannelMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddChannelMutation, AddChannelMutationVariables>(AddChannelDocument, options);
+      }
+export type AddChannelMutationHookResult = ReturnType<typeof useAddChannelMutation>;
+export type AddChannelMutationResult = Apollo.MutationResult<AddChannelMutation>;
+export type AddChannelMutationOptions = Apollo.BaseMutationOptions<AddChannelMutation, AddChannelMutationVariables>;
 export const CurrentUserDocument = gql`
     query CurrentUser {
   me {

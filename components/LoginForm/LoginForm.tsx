@@ -35,27 +35,37 @@ export default function LoginForm() {
     <div className='w-full max-w-lg mx-auto'>
       <form className='bg-white shadow-md rounded p-8' onSubmit={submitHandler}>
         <div className='mb-2'>
-          <input
-            className='border rounded bg-gray-50 px-4 py-2 w-full'
-            name='email'
-            placeholder='Email'
-            type='email'
-            value={formValues.email}
-            onChange={changeHandler}
-          />
+          <label className='block'>
+            <span className='block text-sm font-medium text-slate-700'>
+              Email
+            </span>
+            <input
+              className='border rounded bg-gray-50 px-4 py-2 w-full'
+              name='email'
+              placeholder='Enter email address'
+              type='email'
+              value={formValues.email}
+              onChange={changeHandler}
+            />
+          </label>
         </div>
         <div className='mb-4'>
-          <input
-            className='border rounded bg-gray-50 px-4 py-2 w-full'
-            name='password'
-            placeholder='Password'
-            type='password'
-            value={formValues.password}
-            onChange={changeHandler}
-          />
+          <label className='block'>
+            <span className='block text-sm font-medium text-slate-700'>
+              Password
+            </span>
+            <input
+              className='border rounded bg-gray-50 px-4 py-2 w-full'
+              name='password'
+              placeholder='Enter password'
+              type='password'
+              value={formValues.password}
+              onChange={changeHandler}
+            />
+          </label>
         </div>
         <div className='w-full text-right'>
-          <button className='bg-emerald-500 text-white hover:bg-emerald-600 rounded px-3 py-2'>
+          <button className='bg-emerald-500 text-white hover:bg-emerald-600 rounded px-4 py-2'>
             Log In
           </button>
         </div>

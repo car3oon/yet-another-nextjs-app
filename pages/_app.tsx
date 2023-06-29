@@ -1,17 +1,20 @@
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
 
 import { useAuthenticatedApolloClient } from '@saleor/auth-sdk/react/apollo';
-import { 
+import {
   SaleorAuthProvider,
   useAuthChange,
-  useSaleorAuthClient
- } from '@saleor/auth-sdk/react';
+  useSaleorAuthClient,
+} from '@saleor/auth-sdk/react';
 import { API_URI } from '@/lib/const';
 
-import Navbar from "@/components/Navbar/Navbar";
-import Header from "@/components/Header/Header";
+import { ToastContainer } from 'react-toastify';
+
+import Navbar from '@/components/Navbar/Navbar';
+import Header from '@/components/Header/Header';
 
 export default function App({ Component, pageProps }: AppProps) {
   const saleorAuth = useSaleorAuthClient({
@@ -37,9 +40,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <Header />
         <main>
           <div className='mx-auto max-w-7xl py-6 sm:px-6 lg:px-8'>
-          <Component {...pageProps} />
+            <Component {...pageProps} />
           </div>
         </main>
+        <ToastContainer />
       </ApolloProvider>
     </SaleorAuthProvider>
   );

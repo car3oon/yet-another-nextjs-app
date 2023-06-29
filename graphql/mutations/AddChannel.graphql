@@ -1,0 +1,32 @@
+mutation AddChannel(
+  $name: String!
+  $slug: String!
+  $currencyCode: String!
+  $defaultCountry: CountryCode!
+) {
+  channelCreate(
+    input: {
+      name: $name
+      slug: $slug
+      currencyCode: $currencyCode
+      defaultCountry: $defaultCountry
+    }
+  ) {
+    channel {
+      id
+      isActive
+      currencyCode
+      name
+      slug
+      defaultCountry {
+        country
+        code
+      }
+    }
+    errors {
+      field
+      code
+      message
+    }
+  }
+}
