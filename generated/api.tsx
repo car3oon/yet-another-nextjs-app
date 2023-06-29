@@ -27777,7 +27777,7 @@ export type GetChannelsQuery = { __typename?: 'Query', channels?: Array<{ __type
 export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductsQuery = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', totalCount?: number | null, edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, updatedAt: any, channel?: string | null, media?: Array<{ __typename?: 'ProductMedia', url: string, id: string }> | null } }> } | null };
+export type GetProductsQuery = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', totalCount?: number | null, edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, category?: { __typename?: 'Category', id: string, name: string } | null, thumbnail?: { __typename?: 'Image', url: string } | null } }> } | null };
 
 
 export const AddChannelDocument = gql`
@@ -27929,12 +27929,12 @@ export const GetProductsDocument = gql`
       node {
         id
         name
-        slug
-        updatedAt
-        channel
-        media {
-          url
+        category {
           id
+          name
+        }
+        thumbnail(format: WEBP, size: 200) {
+          url
         }
       }
     }

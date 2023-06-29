@@ -5,12 +5,12 @@ query GetProducts {
       node {
         id
         name
-        slug
-        updatedAt
-        channel
-        media {
-          url
+        category {
           id
+          name
+        }
+        thumbnail(format: WEBP, size: 200) {
+          url
         }
       }
     }

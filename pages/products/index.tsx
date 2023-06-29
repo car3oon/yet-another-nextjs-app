@@ -1,6 +1,7 @@
-import { useGetProductsQuery } from "@/generated/api";
-import { NextPage } from "next";
-import Loader from "@/components/Loader/Loader";
+import { useGetProductsQuery } from '@/generated/api';
+import { NextPage } from 'next';
+import Loader from '@/components/Loader/Loader';
+import ProductCard from '@/components/ProductCard/ProductCard';
 
 const Products: NextPage = () => {
   const { data, loading } = useGetProductsQuery();
@@ -8,17 +9,19 @@ const Products: NextPage = () => {
 
   return (
     <div>
-      { loading && <Loader /> }
-
-      {products &&
-      products.map((product) => (
-        <p key={product?.node?.id}>
-          { product?.node?.name ?? 'No name: something is wrong' }
-        </p>
-      ))}
-      
+      <h1 className='text-lg mb-4'>
+        <span className='font-bold'>Products</span> (
+        {data?.products?.totalCount})
+      </h1>
+      {loading && <Loader />}
+      <div className='grid grid-cols-4 gap-4'>
+        {products &&
+          products.map((product) => (
+            <ProductCard key={product?.node?.id} {...product.node} />
+          ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Products;
